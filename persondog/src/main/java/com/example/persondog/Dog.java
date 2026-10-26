@@ -1,7 +1,7 @@
 package com.example.persondog;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -23,4 +23,8 @@ public class Dog {
     private String breed;
     private int age;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PERSON_FK")
+    private Person personMapped;
 }
