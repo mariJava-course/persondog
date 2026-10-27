@@ -1,5 +1,6 @@
 package com.example.persondog;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class Person {
     private String name;
     private int age;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "PERSON_DOG_JOIN_TABLE",
             joinColumns = @JoinColumn(name = "PERSON_FK"),
