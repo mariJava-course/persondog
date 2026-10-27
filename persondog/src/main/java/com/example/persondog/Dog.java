@@ -24,7 +24,7 @@ public class Dog {
     private int age;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PERSON_FK")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Person personMapped;
 }

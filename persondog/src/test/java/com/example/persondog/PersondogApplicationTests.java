@@ -30,15 +30,17 @@ class PersondogApplicationTests {
 	void testJPA() {
 
 		ArrayList<Dog> dogs = new ArrayList<>();
-		Dog dog = new Dog("A","Lila","Mastín", 8, null);
+		Dog dog = new Dog("B","Lila","Mastín", 8, null);
 		dogs.add(dog);
 
-		Person person = new Person("1", "Anna", 25, dogs );
+		Person person = new Person("2", "Anna", 25, dogs );
 		dog.setPersonMapped(person);
 
 		person = personRepository.save(person);
 
-		//personRepository.count();
+		int count = Math.toIntExact(personRepository.count());
+		System.out.println(count);
+		System.out.println(person.getName());
 		//System.out.println(person);
 	}
 

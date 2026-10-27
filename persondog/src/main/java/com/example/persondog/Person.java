@@ -25,5 +25,5 @@ public class Person {
     private int age;
 
     @OneToMany(mappedBy = "personMapped", cascade = CascadeType.ALL)
-    private List<Dog> dogs = new ArrayList<Dog>();
+    private List<Dog> dogs = new ArrayList<>();
 }
