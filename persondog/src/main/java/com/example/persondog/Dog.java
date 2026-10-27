@@ -1,12 +1,10 @@
 package com.example.persondog;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -22,5 +20,9 @@ public class Dog {
     private String name;
     private String breed;
     private int age;
+
+    // Mapped to the name of list<Dog> in person
+    @ManyToMany(mappedBy = "dogs", fetch = FetchType.EAGER, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Person> persons = new ArrayList<>();
 
 }
