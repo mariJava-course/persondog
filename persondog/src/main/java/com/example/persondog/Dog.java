@@ -1,12 +1,7 @@
 package com.example.persondog;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Data
@@ -23,8 +18,12 @@ public class Dog {
     private String breed;
     private int age;
 
-    @JsonIgnore
+    // uni-directional, dog side is owner
+    // many dogs can have one owner
+    // so the annotation will be @ManyToOne
+    // @JoinColumn is used to define the FK from Person
+    // @JsonIgnore is not necessary
     @JoinColumn(name = "PERSON_FK")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Person personMapped;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Person person;
 }
